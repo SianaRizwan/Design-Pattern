@@ -10,7 +10,7 @@
     off: "off",
   };
 
-    let redOn=false;
+
     let parameters = "off"
     function changeCommand(a){
         $: parameters=orderHandler(a);

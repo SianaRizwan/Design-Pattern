@@ -1,4 +1,4 @@
-
+//Receiver Class-1
 export class Light {
     public on(): string {
         return 'on'
@@ -10,9 +10,10 @@ export class Light {
 }
 
 var brightness:number=0
-
+//Receiver Class-2
 export class RedLight {
     public RedLightOn(): string {
+        brightness=0;
         return `red${brightness}`
     }
 
@@ -32,15 +33,18 @@ export class RedLight {
     }
 }
 
-
+//interface that passes specific request to specific receiver
 export interface Command {
     execute(): string
 }
 
+//implementing the Command interface for specific commands 
+//that needs to be passed to specific receiver
 export class LightOnCommand implements Command {
 
     private light: Light
 
+    //constructor takes the object of the specific receiver class that it will controll
     constructor(light: Light) {
         this.light = light;
     }
@@ -52,9 +56,12 @@ export class LightOnCommand implements Command {
 
 }
 
+//implementing the Command interface for specific commands 
+//that needs to be passed to specific receiver
 export class LightOffCommand implements Command {
     private light: Light
 
+    //constructor takes the object of the specific receiver class that it will controll
     constructor(light: Light) {
         this.light = light
     }
@@ -65,9 +72,12 @@ export class LightOffCommand implements Command {
 
 }
 
-
+//implementing the Command interface for specific commands 
+//that needs to be passed to specific receiver
 export class RedLightOn implements Command {
     light: RedLight;
+
+    //constructor takes the object of the specific receiver class that it will controll
     constructor(light: RedLight) {
         this.light = light;
     }
@@ -78,8 +88,12 @@ export class RedLightOn implements Command {
 
 }
 
+//implementing the Command interface for specific commands 
+//that needs to be passed to specific receiver
 export class RedLightOff implements Command {
     light: RedLight;
+
+    //constructor takes the object of the specific receiver class that it will controll
     constructor(light: RedLight) {
         this.light = light;
     }
@@ -90,9 +104,12 @@ export class RedLightOff implements Command {
 
 }
 
+//implementing the Command interface for specific commands 
+//that needs to be passed to specific receiver
 export class RedLightIncreaseBrightness implements Command {
     light: RedLight;
 
+    //constructor takes the object of the specific receiver class that it will controll
     constructor(light: RedLight) {
         this.light = light;
     }
@@ -103,9 +120,12 @@ export class RedLightIncreaseBrightness implements Command {
 
 }
 
+//implementing the Command interface for specific commands 
+//that needs to be passed to specific receiver
 export class RedLightDecreaseBrightness implements Command {
     light: RedLight;
 
+    //constructor takes the object of the specific receiver class that it will controll
     constructor(light: RedLight) {
         this.light = light;
     }
@@ -116,14 +136,17 @@ export class RedLightDecreaseBrightness implements Command {
 
 }
 
-
+//Invoker class
 export class RemoteControll {
     command!: Command;
     constructor() {
     }
+    //sets the command that the invoker(the remote) will execute
     setCommand(command: Command) {
         this.command = command;
     }
+
+    //executes the command
     executeCommand() {
         return this.command.execute()
     }
